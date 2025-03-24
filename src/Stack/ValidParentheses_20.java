@@ -1,3 +1,5 @@
+package src.Stack;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -95,7 +97,7 @@ s consists of parentheses only '()[]{}'.*/
         return charStack.isEmpty();
     }
 
-    /*解法思路（用栈 Stack）：
+    /*解法思路（用栈 src.Stack）：
     遇到左括号（(、{、[）就入栈；
 
     遇到右括号（)、}、]）时：

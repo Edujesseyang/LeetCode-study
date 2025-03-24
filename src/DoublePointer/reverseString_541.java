@@ -1,3 +1,5 @@
+package src.DoublePointer;
+
 public class reverseString_541 {
     /*Given a string s and an integer k,
     reverse the first k characters for every 2k characters counting from the start of the string.
