@@ -29,7 +29,7 @@ All the words in s are separated by a single space.*/
         System.out.println("After: " + reverseWords(test));
     }
 
-    public static String reverseWords(String s) {
+    private static String reverseWords(String s) {
         // create charArr for in-place moving elements.
         char[] charArr = s.toCharArray();
         int len = charArr.length;

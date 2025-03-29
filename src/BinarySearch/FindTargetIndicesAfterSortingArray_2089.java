@@ -143,7 +143,8 @@ public class FindTargetIndicesAfterSortingArray_2089 {
         // 建一个List来接答案
         List<Integer> result = new ArrayList<>();
 
-        // 这个是精妙之所在, sort完的target肯定从它前面所以数字之和的下一位开始出现, 那么就从target之前的那一个数的index递增targetCount次就可以了. 精妙.
+        // 这个是精妙之所在, sort完的target肯定从它前面所以数字之和的下一位开始出现,
+        // 那么就从target之前的那一个数的index递增targetCount次就可以了. 精妙.
         while (targetCount > 0) {
             result.add(numsInLeft++); // numsInLeft 其实等于sort后, target之前的那个数的index, 直接++, targetCount次.
             targetCount--;

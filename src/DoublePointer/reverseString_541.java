@@ -32,7 +32,7 @@ public class reverseString_541 {
 
     }
 
-    public static String reversString(String s, int k) {
+    private static String reversString(String s, int k) {
         char[] arr = s.toCharArray();
         int len = arr.length;
 

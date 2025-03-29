@@ -94,7 +94,7 @@ Constraints:
 
     }
 
-    public static int removeElement(int[] nums, int val) {
+    private static int removeElement(int[] nums, int val) {
         int i = 0;
         for (int j = 0; j < nums.length; j++) {
             if (nums[j] != val) {
@@ -107,7 +107,7 @@ Constraints:
         return i;
     }
 
-    public static void printTest(int[] nums) {
+    private static void printTest(int[] nums) {
         System.out.print("{");
         for (int i : nums) {
             System.out.print(i + ", ");
@@ -115,7 +115,7 @@ Constraints:
         System.out.println("}");
     }
 
-    public static void printResult(int[] nums, int k) {
+    private static void printResult(int[] nums, int k) {
         System.out.print("{");
         for (int i = 0; i < k; i++) {
             System.out.print(nums[i] + ", ");

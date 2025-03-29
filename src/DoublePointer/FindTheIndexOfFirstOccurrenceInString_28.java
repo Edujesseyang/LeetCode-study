@@ -38,7 +38,7 @@ haystack and needle consist of only lowercase English characters.*/
 
     }
 
-    public static int findIndex(String hay, String nee) {
+    private static int findIndex(String hay, String nee) {
         int hayLen = hay.length();
         int neeLen = nee.length();
         if (neeLen > hayLen) {

@@ -55,7 +55,7 @@ public class NumberOfDistinctAvg_2465 {
     }
 
 
-    public static int disinctAvg(int[] nums) {
+    private static int disinctAvg(int[] nums) {
         Arrays.sort(nums);
 
         Set<Double> result = new HashSet<>();

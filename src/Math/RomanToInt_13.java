@@ -73,7 +73,7 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 
     }
 
-    public static int romanToInt(String string) {
+    private static int romanToInt(String string) {
         Map<Character, Integer> symbolMap = new HashMap<>();
         symbolMap.put('I', 1);
         symbolMap.put('V', 5);

@@ -62,7 +62,7 @@ searchWord consists of lowercase English letters.*/
 
     }
 
-    public static int isPrefixOfWord(String sentence, String prefix) {
+    private static int isPrefixOfWord(String sentence, String prefix) {
         int sentenceLen = sentence.length();
         int prefixLen = prefix.length();
 

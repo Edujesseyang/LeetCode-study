@@ -69,7 +69,7 @@ nums is sorted in non-decreasing order.*/
 
     }
 
-    public static int solution(int[] nums) {
+    private static int solution(int[] nums) {
         int i = 0;
 
         for (int j = 1; j < nums.length; j++) {

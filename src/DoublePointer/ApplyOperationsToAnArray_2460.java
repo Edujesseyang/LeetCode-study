@@ -78,7 +78,7 @@ Constraints:
 
     }
 
-    public static int[] applyOperations(int[] nums) {
+    private static int[] applyOperations(int[] nums) {
         int len = nums.length;
         int i = 0;
         for (int j = 1; j < len; j++) {
