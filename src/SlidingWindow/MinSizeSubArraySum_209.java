@@ -51,10 +51,9 @@ Follow up: If you have figured out the O(n) solution, try coding another solutio
      * @return int
      */
     private static int findMinSizeSubArray(int[] nums, int target) {
-        int result = nums.length; // 初始化结果为最长结果
+        int result = Integer.MAX_VALUE; // 初始化结果为最大的int
         int slow_p = 0; // 建立一个慢针
         int subArraySum = 0; // 建立一个存subArray的和的int
-        boolean isBigEnough = false; // 建立一个判断, input array的总和是否超过target
         for (int fast_p = 0; fast_p < nums.length; fast_p++) { // 遍历整个input array
             subArraySum += nums[fast_p]; // 把快针的值加入subArray的和中
             // 这里用while是精髓, 因为如果出现了如 1, 1, 1, 1, 1, 100, 1, .... 的情况, 如果用if而不是while, 当快针更新到100时, 假如target=100,
@@ -62,10 +61,9 @@ Follow up: If you have figured out the O(n) solution, try coding another solutio
             // 所以用while, 一种缩进慢针, 直到sum小于target为止, 再进入下一个循环, 此时就正确找到了单100 的情况.
             while (subArraySum >= target) { // 如果该和大于了target, 则不断的
                 result = Math.min(result, fast_p - slow_p + 1); // 将快针到慢针的距离更新到结果
-                subArraySum -= nums[slow_p++]; // 不断的更新慢针并慢针指的数从subarray sum中减掉
-                isBigEnough = true; // 并更新判断值
+                subArraySum -= nums[slow_p++]; // 不断的更新慢针并慢针指的数从subArray sum中减掉
             }
         }
-        return isBigEnough ? result : 0;
+        return result == Integer.MAX_VALUE ? 0 : result; // 看看答案否发生果变动, 没有的话return 0
     }
 }
