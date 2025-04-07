@@ -54,7 +54,6 @@ Constraints:
             if (num == 0) {
                 zeroCount++;
             }
-
         }
 
         // 2. 建两个指针, 一个left是在arr末尾, 一个right是在这个left理应所在的位置(可能超过arr长度)
@@ -66,7 +65,7 @@ Constraints:
                 arr[right] = arr[left]; // 将左防止右的位置
             }
             if (arr[left] == 0) { // 每当左遇零, 做两件事.
-                right--; // 第一缩进右
+                right--; // 第一缩进右, 一定先缩进
                 if (right < len) { // 第二如果右此时在界内,
                     arr[right] = 0; // 右改0. 产生两零相邻
                 }
