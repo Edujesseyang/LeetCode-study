@@ -28,9 +28,13 @@ s consists of lowercase English letters.
     */
 
     public static void main(String[] args) {
-        String[] test = {"ava", "eededed", "abca", "aaaaac"};
+        String[] test = {"ava", "eedede", "abca", "aaaaac"};
         for (int i = 0; i < test.length; i++) {
             System.out.println("Test " + (i + 1) + ": Output: " + validPalindrome(test[i]) + " Expected: true");
+        }
+        System.out.println("Recursion approach:");
+        for (int i = 0; i < test.length; i++) {
+            System.out.println("Test " + (i + 1) + ": Output: " + validPalindromeRecursive(test[i]) + " Expected: true");
         }
     }
 
@@ -67,6 +71,29 @@ s consists of lowercase English letters.
                 right--;
             } else {
                 return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 这是这个版本的recursion 实现, 多加了一个删除多少位的param, 这个可以用于比如删除两个或者更多.
+     */
+    public static boolean validPalindromeRecursive(String s) {
+        return isPalindromeRecursive(s, 0, s.length() - 1, 1);
+    }
+
+    private static boolean isPalindromeRecursive(String s, int left, int right, int deleteCount) {
+        while (left < right) {
+            if (s.charAt(left) == s.charAt(right)) {
+
+                left++;
+                right--;
+            } else {
+                if (deleteCount == 0) {
+                    return false;
+                }
+                return (isPalindromeRecursive(s, left + 1, right, deleteCount - 1) || isPalindromeRecursive(s, left, right - 1, deleteCount - 1));
             }
         }
         return true;
