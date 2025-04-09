@@ -80,8 +80,6 @@ Follow up: Can you solve it using O(1) (i.e. constant) memory?
     /**
      * 这是个经典的linkedList查是否是环的题， 最优的解法是， 设快慢针， 慢的在第一位， 快的在第二位，
      * 然后进入循环，如果快针能够到达list的尾， 意味着没有环， 每次将快针移动2位，而慢针移动一位。 如果是环，他们终会相遇。
-     * @param head
-     * @return
      */
     private static boolean isCycle(LinkNode head) {
         // if the head is null, only the head is the only node
