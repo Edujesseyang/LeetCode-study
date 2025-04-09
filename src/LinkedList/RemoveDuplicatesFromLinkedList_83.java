@@ -67,6 +67,9 @@ The list is guaranteed to be sorted in ascending order.
      * 重点在于判断是否一样时的跳跃和进位. 容易混乱.
      */
     private static ListNode removeDuplicate(ListNode head) {
+        if(head == null){
+            return null; // 标准流程,防止空值输入
+        }
         ListNode current = head.next; // 初始current在第二位
         ListNode prev = head; // prev在第一位
         while (current != null) { // 如果不到最后
