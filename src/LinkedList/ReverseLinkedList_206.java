@@ -34,9 +34,6 @@ Follow up: A linked list can be reversed either iteratively or recursively. Coul
         private int val;
         private ListNode next;
 
-        private ListNode() {
-        }
-
         private ListNode(int val) {
             this.val = val;
         }
@@ -57,7 +54,13 @@ Follow up: A linked list can be reversed either iteratively or recursively. Coul
         }
         System.out.println();
 
-        ListNode testResultRecursively = reverseListRecursively(test);
+        ListNode test2 = new ListNode(1);
+        test2.next = new ListNode(2);
+        test2.next.next = new ListNode(3);
+        test2.next.next.next = new ListNode(4);
+        test2.next.next.next.next = new ListNode(5);
+
+        ListNode testResultRecursively = reverseListRecursively(test2);
         while (testResultRecursively != null) {
             System.out.print(testResultRecursively.val + ", ");
             testResultRecursively = testResultRecursively.next;
