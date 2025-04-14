@@ -1,6 +1,5 @@
 package src.LinkedList;
 
-import java.util.List;
 
 public class PalindromeLinkedList_234 {
     /*
@@ -30,11 +29,8 @@ Follow up: Could you do it in O(n) time and O(1) space?
     */
 
     private static class ListNode<T> {
-        private T val;
+        private final T val;
         private ListNode<T> next;
-
-        private ListNode() {
-        }
 
         private ListNode(T val) {
             this.val = val;
