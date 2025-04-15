@@ -65,7 +65,7 @@ Follow-up: Can you implement the stack using only one queue?
             queue.offer(val);
             int count = queue.size() - 1;
             while (count-- > 0) {
-                queue.offer(queue.poll());
+                queue.offer(queue.poll()); // 循环一圈
             }
         }
 
