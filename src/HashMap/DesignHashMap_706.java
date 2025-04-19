@@ -38,9 +38,209 @@ Constraints:
 At most 104 calls will be made to put, get, and remove.
     */
 
+    public static void main(String[] args) {
+
+        System.out.println("****** Testing separate linkedList approach ******");
+        MyHashMap1 map = new MyHashMap1();
+
+        map.put(1, 10);
+        map.put(2, 20);
+        map.put(3, 30);
+
+        System.out.println("1: " + map.get(1)); // 10
+        System.out.println("2: " + map.get(2)); // 20
+        System.out.println("3: " + map.get(3)); // 30
+
+        map.put(2, 25); // update
+        System.out.println("2 updated: " + map.get(2)); // 25
+
+        map.remove(2);
+        System.out.println("2 removed: " + map.get(2)); // -1
+
+        map.remove(99); // non-existing key
+        System.out.println("99 removed: " + map.get(99)); // -1
+
+        for (int i = 100; i < 140; i++) {
+            map.put(i, i + 1000); // trigger rehash if implemented
+        }
+        System.out.println("132: " + map.get(132)); // 1132
+
+
+        System.out.println("\n****** Testing separate linkedList approach ******");
+        MyHashMap<String, Integer> map1 = new MyHashMap<>();
+
+        // put 测试
+        map1.put("apple", 100);
+        map1.put("banana", 200);
+        map1.put("cherry", 300);
+        System.out.println("apple: " + map1.get("apple"));   // 100
+        System.out.println("banana: " + map1.get("banana")); // 200
+        System.out.println("cherry: " + map1.get("cherry")); // 300
+
+        // update 测试
+        map1.put("banana", 250);
+        System.out.println("banana (updated): " + map1.get("banana")); // 250
+
+        // remove 测试
+        System.out.println("remove banana: " + map1.remove("banana")); // true
+        System.out.println("banana: " + map1.get("banana"));           // null
+
+        // 非存在 key 测试
+        System.out.println("grape: " + map1.get("grape")); // null
+        System.out.println("remove grape: " + map1.remove("grape")); // false
+
+        // rehash 测试（插入大量元素触发扩容）
+        for (int i = 0; i < 50; i++) {
+            map1.put("key" + i, i);
+        }
+        System.out.println("key42: " + map1.get("key42")); // 42
+        System.out.println("key0: " + map1.get("key0"));   // 0
+
+
+    }
+
+    /**
+     * 原题的给定输入是两个int, 所以不需要考虑泛型. 这里使用了separate linkedList的方法来解决collision.
+     * 并且在pair中加入next连接. 实现linking
+     */
+    private static class MyHashMap1 {
+        // define 一个 pair class
+        private static class Pair {
+            private final int key;
+            private int val;
+            private Pair next;
+
+            private Pair(int k, int v) {
+                this.key = k;
+                this.val = v;
+            }
+        }
+
+        private Pair[] map;
+        private final double LOAD_FACTOR = 0.7;
+        private int size = 37;
+        private int count = 0;
+
+        private MyHashMap1() {
+            this.map = new Pair[size];
+        }
+
+        private void put(int key, int val) {
+            // 如果负载因子大于70%, rehashing
+            if ((double) count / size >= LOAD_FACTOR) {
+                rehashing();
+            }
+
+            int index = Math.floorMod(key, size); // hashing key, 找到index
+            if (map[index] == null) { // if the bucket is empty, put val there
+                map[index] = new Pair(key, val);
+                count++;
+                return;
+            } // fill in if the spot is empty
+
+
+            Pair current = map[index]; // define a head of that spot
+            while (current != null) { // iterate the chain, check if the key is present
+                if (current.key == key) { // if so, update val, return
+                    current.val = val;
+                    return;
+                }
+                if (current.next == null) { // when hit the last element, stop
+                    break;
+                }
+                current = current.next; // updating curr
+            }
+            assert current != null;
+            current.next = new Pair(key, val); // add newPair to the end
+            count++;
+        }
+
+        private int get(int key) {
+            int index = Math.floorMod(key, size); // hashing the key to find index
+
+            if (map[index] == null) {
+                return -1; // if the bucket is empty, key no found
+            }
+
+            Pair current = map[index];
+            while (current != null) { // iterate the separate chain
+                if (current.key == key) { // looking for the key
+                    return current.val; // if key is found, return val
+                }
+                current = current.next; // update curr
+            }
+            return -1; // not found, return
+        }
+
+        private void remove(int key) {
+            int index = Math.floorMod(key, size); // hashing key for index
+            if (map[index] == null) { // the bucket is empty, nothing found
+                return;
+            }
+
+            if (map[index].key == key) { // check the first element in the bucket
+                map[index] = map[index].next; // set the bucket to be the next of it
+                count--; // update count, return
+                return;
+            }
+
+            Pair curr = map[index]; // define curr
+            while (curr.next != null) { // the first element has already squared away
+                if (curr.next.key == key) { // check if the next.key = key
+                    curr.next = curr.next.next; // if key found, remove it by bypassing the pair
+                    count--;
+                    return;
+                }
+                curr = curr.next;
+            }
+        }
+
+
+        private void rehashing() {
+            this.size = nextPrime(size * 2); // find the next prime after doubling the size
+            this.count = 0; // reset the count
+
+            Pair[] oldMap = map; // copy the old map
+            this.map = new Pair[size]; // update a new map with new size
+
+            for (Pair p : oldMap) { // iterate the oldMap
+                while (p != null) { // put every pair to the newMap
+                    put(p.key, p.val);
+                    p = p.next;
+                }
+            }
+        }
+
+        private int nextPrime(int n) {
+            while (!isPrime(n)) { // find the next prime
+                n++;
+            }
+            return n;
+        }
+
+        private boolean isPrime(int n) {
+            if (n < 4) return n > 0; // 1, 2, 3 are prime
+            if (n % 2 == 0 || n % 3 == 0) { // filter out 2k and 3k
+                return false;
+            }
+            for (int i = 5; i * i <= n; i += 6) { // prime is 6k +- 1
+                if (n % i == 0 || n % (i + 2) == 0) { // let i = 6k - 1,  then  i + 2 = 6k + 1
+                    return false;
+                }
+            }
+            return true;
+        }
+
+    }
+
+
+    /**
+     * 以下的是泛型加线性探测的版本
+     */
     private static class MyHashMap<K, V> {
+
         private static class Pair<K, V> {
-            private K key;
+            private final K key;
             private V val;
 
             private Pair(K key, V val) {
@@ -52,17 +252,13 @@ At most 104 calls will be made to put, get, and remove.
 
         private final double LOAD_FACTOR = 0.6;
         private Pair<K, V>[] baseArr;
-        private final Class<K> clazzK;
-        private final Class<V> clazzV;
         private int size;
         private int pairCount = 0;
 
         @SuppressWarnings("unchecked")
-        private MyHashMap(Class<K> clazzK, Class<V> clazzV) {
+        private MyHashMap() {
             this.size = 37;
             baseArr = (Pair<K, V>[]) java.lang.reflect.Array.newInstance(Pair.class, size);
-            this.clazzK = clazzK;
-            this.clazzV = clazzV;
 
         }
 
@@ -137,18 +333,15 @@ At most 104 calls will be made to put, get, and remove.
 
         @SuppressWarnings("unchecked")
         private void rehashing() {
-            Pair<K, V>[] newArr = (Pair<K, V>[]) java.lang.reflect.Array.newInstance(Pair.class);
-            for (Pair<K, V> p : baseArr) {
-                int index = Math.abs(p.key.hashCode() % findNextPrime(size * 2));
-                Pair<K, V> newPair = new Pair<>(p.key, p.val);
-                if (baseArr[index] != null) {
-                    while (baseArr[index] != null) {
-                        index++;
-                    }
+            this.size = findNextPrime(size * 2);
+            pairCount = 0;
+            Pair<K, V>[] oldArr = baseArr;
+            this.baseArr = (Pair<K, V>[]) java.lang.reflect.Array.newInstance(Pair.class, size);
+            for (Pair<K, V> p : oldArr) {
+                if (p != null) {
+                    put(p.key, p.val);
                 }
-                newArr[index] = newPair;
             }
-            this.baseArr = newArr;
         }
 
         private int findNextPrime(int size) {
