@@ -46,6 +46,12 @@ s[i] is a printable ascii character.
         System.out.println(test5);  // [4, 3, 2, 1]
     }
 
+    /**
+     * This is a classic left/right double pointers swap question.
+     * left on 0, right on the last element.
+     * while loop, swap them, and left++, right--.
+     * once they meet. Done.
+     */
     private static void reverseString(char[] s) {
         int left = 0, right = s.length - 1;
         while (left < right) {
