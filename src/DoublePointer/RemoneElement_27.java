@@ -63,9 +63,9 @@ Constraints:
 
 
         System.out.print("Test 1: ");
-        printTest(test.getFirst());
+        printTest(test.get(1));
         System.out.print("Output:   ");
-        printResult(test.getFirst(), removeElement(test.getFirst(), 2));
+        printResult(test.get(1), removeElement(test.get(1), 2));
         System.out.println("Expected: {7, 1, 3, 3, 1, 5, 6, 8, 9, 6, }");
 
         System.out.print("\nTest 2: ");

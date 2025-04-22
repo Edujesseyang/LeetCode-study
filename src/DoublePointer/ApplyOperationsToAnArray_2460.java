@@ -56,11 +56,11 @@ Constraints:
         }
 
         System.out.println("Test 1: ");
-        for (int i : test.getFirst()) {
+        for (int i : test.get(1)) {
             System.out.print(i + ", ");
         }
         System.out.println("\nOutput: ");
-        for (int i : result.getFirst()) {
+        for (int i : result.get(1)) {
             System.out.print(i + ", ");
         }
         System.out.println("\nExpected: \n1, 4, 2, 0, 0, 0,  ");
