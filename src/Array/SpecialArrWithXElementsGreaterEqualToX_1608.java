@@ -53,8 +53,6 @@ Constraints:
      * sort一下, 然后loop, 每层loop 都count一个后面还有多少个数, 如果这个数大于等于nums[i]了, 则判断一下
      * 这是i如果时零, 表面后面的数都的数都大于一个不存在的数, 那么这个数就是后面的数量, 返回就行了.
      * 如果i不是零, 但是i前面的数时小于现在后面数的总量时, 表面这时后面的数总量等于这个i. 此时返回
-     * @param nums :
-     * @return :
      */
     private static int findXElementsGreaterEqualThanX(int[] nums) {
 
