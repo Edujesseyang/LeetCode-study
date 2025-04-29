@@ -27,23 +27,23 @@ s[i] is a printable ascii character.
     public static void main(String[] args) {
         char[] test1 = {'h', 'e', 'l', 'l', 'o'};
         reverseString(test1);
-        System.out.println(test1);  // [o, l, l, e, h]
+        System.out.println(new String(test1));  // [o, l, l, e, h]
 
         char[] test2 = {'J', 'e', 's', 's', 'e'};
         reverseString(test2);
-        System.out.println(test2);  // [e, s, s, e, J]
+        System.out.println(new String(test2));  // [e, s, s, e, J]
 
         char[] test3 = {'a'};
         reverseString(test3);
-        System.out.println(test3);  // [a]
+        System.out.println(new String(test3));  // [a]
 
         char[] test4 = {};
         reverseString(test4);
-        System.out.println(test4);  // []
+        System.out.println(new String(test4));  // []
 
         char[] test5 = {'1', '2', '3', '4'};
         reverseString(test5);
-        System.out.println(test5);  // [4, 3, 2, 1]
+        System.out.println(new String(test5));  // [4, 3, 2, 1]
     }
 
     /**
