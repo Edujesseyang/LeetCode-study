@@ -5,7 +5,7 @@ import java.util.Deque;
 
 public class BaseballGame_682 {
     /*
-    You are keeping the scores for a baseball game with strange rules. At the beginning of the game, you start with an empty record.
+You are keeping the scores for a baseball game with strange rules. At the beginning of the game, you start with an empty record.
 
 You are given a list of strings operations, where operations[i] is the ith operation you must apply to the record and is one of the following:
 
@@ -64,7 +64,7 @@ Constraints:
 operations[i] is "C", "D", "+", or a string representing an integer in the range [-3 * 104, 3 * 104].
 For operation "+", there will always be at least two previous scores on the record.
 For operations "C" and "D", there will always be at least one previous score on the record.
-    */
+*/
 
     public static void main(String[] args) {
         String[] ops = {"5", "2", "C", "D", "+"};
