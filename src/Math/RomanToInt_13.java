@@ -96,4 +96,58 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].
         return result + symbolMap.get(string.charAt(len - 1));
     }
 
+    private static int romanToInt2(String s) {
+        int[] cMap = new int[100];
+        cMap['I'] = 1;
+        cMap['V'] = 5;
+        cMap['X'] = 10;
+        cMap['L'] = 50;
+        cMap['C'] = 100;
+        cMap['D'] = 500;
+        cMap['M'] = 1000;
+
+        int result = 0;
+        int len = s.length();
+        for (int i = 0; i < len - 1; i++) {
+            int current = cMap[s.charAt(i)];
+            if (current < cMap[s.charAt(i + 1)]) {
+                result -= current;
+            } else {
+                result += current;
+            }
+        }
+
+        return result + cMap[s.charAt(len - 1)];
+    }
+
+    private static int romanToInt3(String s) {
+        int len = s.length();
+        int ans = 0;
+
+        for (int i = 0; i < len - 1; i++) {
+            int current = getInt(s.charAt(i));
+            if (current < getInt(s.charAt(i + 1))) {
+                ans -= current;
+            } else {
+                ans += current;
+            }
+        }
+
+        return ans + getInt(s.charAt(len - 1));
+    }
+
+    private static int getInt(char c) {
+        return switch (c) {
+            case 'I' -> 1;
+            case 'V' -> 5;
+            case 'X' -> 10;
+            case 'L' -> 50;
+            case 'C' -> 100;
+            case 'D' -> 500;
+            case 'M' -> 1000;
+            default -> 0;
+        };
+    }
+
+
 }
