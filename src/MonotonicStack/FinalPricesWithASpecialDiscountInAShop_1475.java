@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class FinalPricesWithASpecialDiscountInAShop_1475 {
+
     /*
     You are given an integer array prices where prices[i] is the price of the ith item in a shop.
 
@@ -39,24 +40,39 @@ Constraints:
 
 1 <= prices.length <= 500
 1 <= prices[i] <= 1000
-    */
-
+     */
     public static void main(String[] args) {
-        int[] test = {1,2,3,4,5};
-        int[] test2 = {8,4,6,2,3};
+        int[] test = {1, 2, 3, 4, 5};
+        int[] test2 = {8, 4, 6, 2, 3};
+
+        int[] result = getFinalPrices(test);
+        int[] result2 = getFinalPrices(test2);
+
+        printArr(result);
+        System.out.println();
+
+        printArr(result2);
+        System.out.println();
+
     }
 
     private static int[] getFinalPrices(int[] prices) {
         int len = prices.length;
         Deque<Integer> stack = new ArrayDeque<>();
 
-        for(int i = 0; i < len; i++) {
-            while(!stack.isEmpty() && prices[i] <= prices[stack.peekFirst()]) {
+        for (int i = 0; i < len; i++) {
+            while (!stack.isEmpty() && prices[i] <= prices[stack.peekFirst()]) {
                 int index = stack.removeFirst();
                 prices[index] = prices[index] - prices[i];
             }
             stack.addFirst(i);
         }
         return prices;
+    }
+
+    private static void printArr(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + ", ");
+        }
     }
 }
