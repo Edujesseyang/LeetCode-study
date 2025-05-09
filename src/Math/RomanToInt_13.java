@@ -52,9 +52,7 @@ Constraints:
 1 <= s.length <= 15
 s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
 It is guaranteed that s is a valid roman numeral in the range [1, 3999].
-*/
-
-
+     */
     public static void main(String[] args) {
         List<String> testCase = new ArrayList<>();
         testCase.add("MCMXCIV");
@@ -70,6 +68,17 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].
             i++;
         }
 
+        i = 0;
+        for (String s : testCase) {
+            System.out.println("Test: \"" + s + "\" Answer: " + romanToInt2(s) + " Correct Answer: " + answers.get(i));
+            i++;
+        }
+
+        i = 0;
+        for (String s : testCase) {
+            System.out.println("Test: \"" + s + "\" Answer: " + romanToInt3(s) + " Correct Answer: " + answers.get(i));
+            i++;
+        }
 
     }
 
@@ -138,16 +147,23 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 
     private static int getInt(char c) {
         return switch (c) {
-            case 'I' -> 1;
-            case 'V' -> 5;
-            case 'X' -> 10;
-            case 'L' -> 50;
-            case 'C' -> 100;
-            case 'D' -> 500;
-            case 'M' -> 1000;
-            default -> 0;
+            case 'I' ->
+                1;
+            case 'V' ->
+                5;
+            case 'X' ->
+                10;
+            case 'L' ->
+                50;
+            case 'C' ->
+                100;
+            case 'D' ->
+                500;
+            case 'M' ->
+                1000;
+            default ->
+                0;
         };
     }
-
 
 }

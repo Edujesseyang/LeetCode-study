@@ -39,8 +39,8 @@ n == nums.length
         System.out.println("Test 1 (approach 1): Output = " + findMaxAvg(test1, 4) + " Expected: 12.75");
         System.out.println("Test 2 (approach 1): Output = " + findMaxAvg(test2, 90) + " Expected: 37.25555555555555");
 
-        System.out.println("Test 1 (approach 2): Output = " + findMaxAvg(test1, 4) + " Expected: 12.75");
-        System.out.println("Test 2 (approach 2): Output = " + findMaxAvg(test2, 90) + " Expected: 37.25555555555555");
+        System.out.println("Test 1 (approach 2): Output = " + findMaxAvg2(test1, 4) + " Expected: 12.75");
+        System.out.println("Test 2 (approach 2): Output = " + findMaxAvg2(test2, 90) + " Expected: 37.25555555555555");
     }
 
 

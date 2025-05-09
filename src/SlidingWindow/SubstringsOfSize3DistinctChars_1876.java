@@ -1,6 +1,5 @@
 package src.SlidingWindow;
 
-import java.util.Arrays;
 
 public class SubstringsOfSize3DistinctChars_1876 {
     /*

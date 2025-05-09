@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MinOperationsMakeUniValGrid_2033 {
+
     /*You are given a 2D integer grid of size m x n and an integer x. In one operation, you can add x to or subtract x from any element in the grid.
 
 A uni-value grid is a grid where all the elements of it are equal.
@@ -44,7 +45,7 @@ n == grid[i].length
 1 <= m, n <= 105
 1 <= m * n <= 105
 1 <= x, grid[i][j] <= 104
-*/
+     */
     public static void main(String[] args) {
         int[][] test1 = {{6, 8}, {2, 4}};
         int[][] test2 = {{1, 2}, {3, 4}};
@@ -80,15 +81,14 @@ n == grid[i].length
 
     /**
      * Convert a 2-d grid to a 1-d array
+     *
      * @param grid : 2-d nested int array
      * @return : 1-d int array.
      */
     private static int[] flattenGrid(int[][] grid) {
         int size = 0;
         for (int[] nums : grid) {
-            for (int num : nums) {
-                size++;
-            }
+            size += nums.length;
         }
 
         int[] arr = new int[size];
@@ -103,6 +103,7 @@ n == grid[i].length
 
     /**
      * Find the total steps to make an array a uni-valued array.
+     *
      * @param arr : a sorted int array.
      * @param x : the length of each step.
      * @param mid : the mid-index.

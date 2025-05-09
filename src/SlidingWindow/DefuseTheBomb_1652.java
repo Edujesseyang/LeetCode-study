@@ -56,7 +56,7 @@ n == code.length
         }
         System.out.println();
 
-        int[] result2 = decryptBest(test2, 0);
+        int[] result2 = decrypt2(test2, 0);
         System.out.print("Test 2: ");
         for (int num : result2) {
             System.out.print(num + ", ");
@@ -176,9 +176,7 @@ n == code.length
         int codeLen = code.length;
         int[] extendedCode = Arrays.copyOf(code, codeLen + k);
 
-        for (int i = 0; i < k; i++) {
-            extendedCode[codeLen + i] = code[i];
-        }
+        System.arraycopy(code, 0, extendedCode, codeLen, k);
 
         int[] result = new int[codeLen];
         int sum = 0;

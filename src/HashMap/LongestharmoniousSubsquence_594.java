@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LongestharmoniousSubsquence_594 {
+class LongestharmoniousSubsquence_594 {
     /*
     We define a harmonious array as an array where the difference between its maximum value and its minimum value is exactly 1.
 
@@ -53,6 +53,7 @@ Constraints:
     public static void main(String[] args) {
         int[] test = {1, 3, 2, 2, 5, 2, 3, 7};
         System.out.println("Output: " + findSubsequence(test) + " Expected: 5");
+        System.out.println("Output: " + findSubsequence2(test) + " Expected: 5");
     }
 
     /**

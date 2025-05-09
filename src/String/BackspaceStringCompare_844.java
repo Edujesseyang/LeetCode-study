@@ -39,9 +39,9 @@ Follow up: Can you solve it in O(n) time and O(1) space?
 
     public static void main(String[] args) {
         System.out.println(approach1("ab#c", "ad#c"));  // true
-        System.out.println(approach1("ab##", "c#d#"));  // true
+        System.out.println(approach2("ab##", "c#d#"));  // true
         System.out.println(approach1("a#c", "b"));      // false
-        System.out.println(approach1("a##c", "#a#c"));  // true
+        System.out.println(approach2("a##c", "#a#c"));  // true
     }
 
 

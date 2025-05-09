@@ -45,8 +45,8 @@ public class FindTargetIndicesAfterSortingArray_2089 {
         int[] test2 = {1, 2, 5, 2, 3};
         int[] test3 = {1, 2, 5, 2, 3};
         System.out.println("Test 1: Target=2   Output: " + targetIndices(test1, 2));
-        System.out.println("Test 2: Target=3   Output: " + targetIndices(test2, 3));
-        System.out.println("Test 3: Target=5   Output: " + targetIndices(test3, 5));
+        System.out.println("Test 2: Target=3   Output: " + targetIndices2(test2, 3));
+        System.out.println("Test 3: Target=5   Output: " + targetIndices3(test3, 5));
 
     }
 

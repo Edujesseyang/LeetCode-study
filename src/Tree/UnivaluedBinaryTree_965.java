@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class UnivaluedBinaryTree_965 {
+
     /*A binary tree is uni-valued if every node in the tree has the same value.
 
     Given the root of a binary tree, return true if the given tree is uni-valued, or false otherwise.
@@ -26,23 +27,14 @@ public class UnivaluedBinaryTree_965 {
     0 <= Node.val < 100
 
     * */
-
     private static class TreeNode {
+
         int val;
         TreeNode left;
         TreeNode right;
 
-        TreeNode() {
-        }
-
         TreeNode(int val) {
             this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
         }
 
     }
@@ -64,11 +56,11 @@ public class UnivaluedBinaryTree_965 {
         root2.right.left = new TreeNode(5);
         root2.right.right = new TreeNode(1);
 
-        System.out.println("Test case 1: \nExpected: True, output: " + univalueBTCheck(root1));
-        System.out.println("Test case 2: \nExpected: False, output: " + univalueBTCheck(root2));
+        System.out.println("Test case 1: \nExpected: True, output: " + approach(root1));
+        System.out.println("Test case 2: \nExpected: False, output: " + approach(root2));
     }
 
-    public static boolean univalueBTCheck(TreeNode root) {
+    private static boolean approach(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
@@ -76,6 +68,9 @@ public class UnivaluedBinaryTree_965 {
             if (current != null && current.val != root.val) {
                 return false;
             } else {
+                if (current == null) {
+                    continue;
+                }
                 if (current.left != null) {
                     queue.offer(current.left);
                 }
@@ -89,5 +84,4 @@ public class UnivaluedBinaryTree_965 {
 
     /*
      * 任何简单的搜索都可以, 广度优先, 深度优先 都无所谓. */
-
 }
