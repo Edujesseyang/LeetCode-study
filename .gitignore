@@ -1,4 +1,6 @@
 out/
 .idea/
 .vscode/
+.classpath
+.project
 
