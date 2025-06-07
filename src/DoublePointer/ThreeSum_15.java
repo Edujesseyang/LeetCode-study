@@ -70,11 +70,11 @@ Constraints:
                     // build list, add to result, and update pointers
                     result.add(new ArrayList<>(Arrays.asList(nums[i], nums[l++], nums[r--])));
 
-                    while (l < r && nums[l] == nums[l + 1]) {
+                    while (l < r && nums[l] == nums[l - 1]) {
                         l++; // skip all duplicates from left side
                     }
 
-                    while (l < r && nums[r] == nums[r - 1]) {
+                    while (l < r && nums[r] == nums[r + 1]) {
                         r--; // skip all duplicates from right side
                     }
                 } else if (sum < 0) { // update left if sum less than 0
