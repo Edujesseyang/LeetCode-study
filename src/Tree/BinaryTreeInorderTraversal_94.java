@@ -154,14 +154,14 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
         TreeNode current = root;
 
         while (current != null || !stack.isEmpty()) {
-            while (current != null) {
+            while (current != null) { // 一路从左加到底
                 stack.push(current);
                 current = current.left;
             }
 
-            current = stack.pop();
+            current = stack.pop(); // 更新 current
             ans.add(current.val);
-            current = current.right;
+            current = current.right; // 走右边
         }
         return ans;
     }
