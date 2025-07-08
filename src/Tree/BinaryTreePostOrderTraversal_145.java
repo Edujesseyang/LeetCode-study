@@ -1,18 +1,18 @@
 package src.Tree;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
-public class BinaryTreePreorderTraversal_144 {
+public class BinaryTreePostOrderTraversal_145 {
     /*
-    * Given the root of a binary tree, return the preorder traversal of its nodes' values.
+    Given the root of a binary tree, return the postorder traversal of its nodes' values.
+
+
 
 Example 1:
 
 Input: root = [1,null,2,3]
 
-Output: [1,2,3]
+Output: [3,2,1]
 
 Explanation:
 
@@ -22,7 +22,7 @@ Example 2:
 
 Input: root = [1,2,3,4,5,null,8,null,null,6,7,9]
 
-Output: [1,2,4,5,6,7,3,8,9]
+Output: [4,6,7,5,2,9,8,3,1]
 
 Explanation:
 
@@ -44,12 +44,12 @@ Output: [1]
 
 Constraints:
 
-The number of nodes in the tree is in the range [0, 100].
+The number of the nodes in the tree is in the range [0, 100].
 -100 <= Node.val <= 100
 
 
-Follow up: Recursive solution is trivial, could you do it iteratively?*/
-
+Follow up: Recursive solution is trivial, could you do it iteratively?
+    */
     private static class TreeNode {
         int val;
         TreeNode left;
@@ -63,7 +63,6 @@ Follow up: Recursive solution is trivial, could you do it iteratively?*/
     }
 
     public static void main(String[] args) {
-        System.out.println("*** Testing nested list ***");
         // Tree 1:
         System.out.println("Tree 1: ");
         System.out.println("        1\n" +
@@ -85,8 +84,9 @@ Follow up: Recursive solution is trivial, could you do it iteratively?*/
         TreeNode node_3 = new TreeNode(3, node_5, node_6);
         // level 1
         TreeNode root = new TreeNode(1, node_2, node_3);
-        System.out.println(preorderTraverseRecursively(root));
-
+        System.out.println("Recursive, Postorder: " + postorderRecursive(root));
+        System.out.println("Iteration, Postorder: " + postorderIteration(root));
+        System.out.println("Iteration with addFirst, Postorder: " + postorderIteration2(root));
         //Tree 2:
         System.out.println("Tree 2:");
         System.out.println("        1\n" +
@@ -108,12 +108,14 @@ Follow up: Recursive solution is trivial, could you do it iteratively?*/
         TreeNode node_3_2 = new TreeNode(3, node_6_2, null);
         // level 1
         TreeNode root_2 = new TreeNode(1, node_2_2, node_3_2);
-        System.out.println(preorderTraverseRecursively(root_2));
+        System.out.println("Recursive, Postorder: " + postorderRecursive(root_2));
+        System.out.println("Iteration, Postorder: " + postorderIteration(root_2));
+        System.out.println("Iteration with addFirst, Postorder: " + postorderIteration2(root_2));
 
     }
 
-    // preorder的递归版本
-    private static List<Integer> preorderTraverseRecursively(TreeNode root) {
+    // recursive:
+    private static List<Integer> postorderRecursive(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         traverse(root, result);
         return result;
@@ -123,12 +125,13 @@ Follow up: Recursive solution is trivial, could you do it iteratively?*/
         if (node == null) {
             return;
         }
-        result.add(node.val); // 先访问
-        traverse(node.left, result); // 先左
-        traverse(node.right, result); // 后右
+        traverse(node.left, result);
+        traverse(node.right, result);
+        result.add(node.val);
     }
 
-    private static List<Integer> preorderTraverseInternational(TreeNode root) {
+    // iteration:
+    private static List<Integer> postorderIteration(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         if (root == null) {
             return result;
@@ -139,15 +142,41 @@ Follow up: Recursive solution is trivial, could you do it iteratively?*/
 
         while (!stack.isEmpty()) {
             TreeNode current = stack.pop();
-            result.add(current.val);
+            result.add(current.val); // 加末尾
 
-            //因为是stack(FIFO), 所以要先加入右边再加入左边,
-            if (current.right != null) {
-                stack.push(current.right);
+            if (current.left != null) { // 先左
+                stack.push(current.left);
             }
 
-            if (current.left != null) {
+            if (current.right != null) { // 后右
+                stack.push(current.right);
+            }
+        }
+
+        Collections.reverse(result); // 关键步骤, return之前反转result list.
+        return result;
+    }
+
+    // 利用LinkedList 的 addFirst method
+    private static List<Integer> postorderIteration2(TreeNode root) {
+        List<Integer> result = new LinkedList<>();
+        if (root == null) {
+            return result;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            TreeNode current = stack.pop();
+            ((LinkedList<Integer>) result).addFirst(current.val); // 进行一次强制类型转换, 为了使用addFirst
+
+            if (current.left != null) { // 先左
                 stack.push(current.left);
+            }
+
+            if (current.right != null) { // 后右
+                stack.push(current.right);
             }
         }
 
