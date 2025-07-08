@@ -87,6 +87,7 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
         System.out.println("Recursive, Postorder: " + postorderRecursive(root));
         System.out.println("Iteration, Postorder: " + postorderIteration(root));
         System.out.println("Iteration with addFirst, Postorder: " + postorderIteration2(root));
+
         //Tree 2:
         System.out.println("Tree 2:");
         System.out.println("        1\n" +
@@ -111,6 +112,7 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
         System.out.println("Recursive, Postorder: " + postorderRecursive(root_2));
         System.out.println("Iteration, Postorder: " + postorderIteration(root_2));
         System.out.println("Iteration with addFirst, Postorder: " + postorderIteration2(root_2));
+
 
     }
 
@@ -159,7 +161,7 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
 
     // 利用LinkedList 的 addFirst method
     private static List<Integer> postorderIteration2(TreeNode root) {
-        List<Integer> result = new LinkedList<>();
+        LinkedList<Integer> result = new LinkedList<>();
         if (root == null) {
             return result;
         }
@@ -169,7 +171,7 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
 
         while (!stack.isEmpty()) {
             TreeNode current = stack.pop();
-            ((LinkedList<Integer>) result).addFirst(current.val); // 进行一次强制类型转换, 为了使用addFirst
+            result.addFirst(current.val); // 使用addFirst
 
             if (current.left != null) { // 先左
                 stack.push(current.left);
