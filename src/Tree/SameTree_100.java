@@ -1,5 +1,7 @@
 package src.Tree;
 
+import java.util.Stack;
+
 public class SameTree_100 {
     /*
     Given the roots of two binary trees p and q, write a function to check if they are the same or not.
@@ -100,6 +102,7 @@ The number of nodes in both trees is in the range [0, 100].
 
     }
 
+    // 使用递归来做:
     private static boolean isSameTree(TreeNode root_1, TreeNode root_2) {
         if (root_1 == null || root_2 == null) { // base case one: one of them is null
             return root_1 == root_2; // if they both are null, return true, if they are not both null, return false.
@@ -109,5 +112,32 @@ The number of nodes in both trees is in the range [0, 100].
         }
         // recursively check left leaf and right leaf
         return isSameTree(root_1.left, root_2.left) && isSameTree(root_1.right, root_2.right);
+    }
+
+    // 使用栈模拟迭代:
+    private static boolean isSameTree2(TreeNode root_1, TreeNode root_2) {
+        Stack<TreeNode[]> stack = new Stack<>(); // create stack for TreeNode pairs
+        stack.push(new TreeNode[]{root_1, root_2}); // use array for TreeNode pair
+
+        while (!stack.isEmpty()) {
+            TreeNode[] temp = stack.pop(); // pop out one pair
+            TreeNode node_1 = temp[0]; // assign both nodes
+            TreeNode node_2 = temp[1];
+
+            if (node_1 == null && node_2 == null) { // if they all null, go ahead do the next round
+                continue;
+            }
+            if (node_1 == null || node_2 == null) { // return false if one null one not null
+                return false;
+            }
+            if (node_1.val != node_2.val) { // return false if they are not same
+                return false;
+            }
+
+            stack.push(new TreeNode[]{node_1.left, node_2.left}); // push their lefts
+            stack.push((new TreeNode[]{node_1.right, node_2.right})); // push their rights
+        }
+
+        return true;  // if the stack is empty after all, means they are same
     }
 }
